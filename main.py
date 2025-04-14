@@ -1,21 +1,26 @@
+
 from menu import mostrar_menu
+from controllers.pokedex_controllers import add_pokemon, update_pokemon, list_pokemon, delete_pokemon 
+from utils.helpers import clear_console
 
 
 def run():
+    clear_console()
     while True:
         mostrar_menu()
         option = input('Elije una opción [0-4]: ')
+        clear_console()
         match option:
             case '1':
-                print('Opción 1 seleccionada')
+                add_pokemon()
             case '2':
-                print('Opción 2 seleccionada')
+                list_pokemon()
             case '3':
-                print('Opción 3 seleccionada')
+                update_pokemon()
             case '4':
-                print('Opción 4 seleccionada')
+                delete_pokemon()
             case '0':
-                print('¡Hasta luego!')
+                print('Saliendo...')
                 break
             case _:
                 print('Opción inválida. Intenta de nuevo.')
