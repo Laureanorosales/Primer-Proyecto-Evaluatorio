@@ -10,4 +10,7 @@ Pasos a seguir:
 2- La version de pip que utilice en este proyecto es la 25.0.1
 
 
-3- Las librerias instaladas son las incluidas en el requirements.txt
+3- Las librerias instaladas son las incluidas en el requirements.txt - 
+   Se instalan mediante un comando: 'pip install -r requirements.txt'
+
+4- Ejecutar desde main.py
