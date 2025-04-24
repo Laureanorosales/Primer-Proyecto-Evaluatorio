@@ -1,21 +1,102 @@
 class Pokemon:
     def __init__(self, nombre: str, nivel: int, tipo: str, info: str):
-        self.nombre = nombre
-        self.nivel = nivel
-        self.tipo = tipo
-        self.info = info
+        self.__nombre = nombre
+        self.__nivel = nivel
+        self.__tipo = tipo
+        self.__info = info
+
+    def get_nombre(self):
+        return self.__nombre
+
+    def get_nivel(self):
+        return self.__nivel
+
+    def get_tipo(self):
+        return self.__tipo
+
+    def get_info(self):
+        return self.__info
+
+    def set_nombre(self, nombre: str):
+        self.__nombre = nombre
+
+    def set_nivel(self, nivel: int):
+        if nivel >= 1:
+            self.__nivel = nivel
+        else:
+            print("El nivel debe ser 1 o mayor.")
+
+    def set_tipo(self, tipo: str):
+        self.__tipo = tipo
+
+    def set_info(self, info: str):
+        self.__info = info
 
     def __str__(self):
         return f"{self.nombre} (Nivel {self.nivel}) - Tipo: {self.tipo}. {self.info}"
 
     def to_dict(self):
         return {
-            'nombre': self.nombre,
-            'nivel': self.nivel,
-            'tipo': self.tipo,
-            'info': self.info
+            'nombre': self.get_nombre(),
+            'nivel': self.get_nivel(),
+            'tipo': self.get_tipo(),
+            'info': self.get_info()
         }
 
     @classmethod
     def from_dict(cls, data):
         return cls(data['nombre'], data['nivel'], data['tipo'], data['info'])
+
+
+# ----Subclases - Herencia ----
+
+class PokemonComun(Pokemon):
+    def __init__(self, nombre: str, nivel: int, tipo: str, info: str):
+        super().__init__(nombre, nivel, tipo, info)
+        self.__categoria = 'Comun'
+
+    def get_categoria(self):
+        return self.__categoria
+
+    def __str__(self):
+        base_str = super().__str__()
+        return f'{base_str} - Categoría: {self.__categoria}'
+
+# Subclase Pokemon raro (Hereda clase Pokemon (nombre, nivel, tipo, info) y agrega rarezal(que lo convierte en raro a este pokemon))
+
+
+class PokemonRaro(Pokemon):
+    def __init__(self, nombre: str, nivel: int, tipo: str, info: str, rareza: str, poder_especial: str):
+        super().__init__(nombre, nivel, tipo, info)
+        self.__categoria = 'Raro'
+        self.__rareza = rareza
+
+    def get_categoria(self):
+        return self.__categoria
+
+    def get_rareza(self):
+        return self.__rareza
+
+    def __str__(self):
+        # Llamamos al método __str__ de la clase base
+        base_str = super().__str__()
+        return f"{base_str} - Categoría: {self.__categoria} - Rareza: {self.__rareza}"
+
+# Subclase Pokemon Legendario (Hereda clase Pokemon (nombre, nivel, tipo, info) y agrega poder especial(caracteristica de un pokemon legendario))
+
+
+class PokemonLegendario(Pokemon):
+    def __init__(self, nombre: str, nivel: int, tipo: str, info: str, poder_especial: str):
+        super().__init__(nombre, nivel, tipo, info)
+        self.__categoria = "Legendario"
+        self.__poder_especial = poder_especial
+
+    def get_categoria(self):
+        return self.__categoria
+
+    def get_poder_especial(self):
+        return self.__poder_especial
+
+    def __str__(self):
+        base_str = super().__str__()
+        return f"{base_str} - Categoría: {self.__categoria} - Poder especial: {self.__poder_especial}"
