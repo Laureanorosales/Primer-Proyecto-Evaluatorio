@@ -27,8 +27,7 @@ def add_pokemon():
 
     tipo = input('Tipo: ')
     info = input('Pequeña descripcion: ')
-    
-    # Solicitar categoría
+  
     categoria = input("Categoría (Comun, Raro, Legendario): ").lower()
 
     if categoria == 'comun':
@@ -46,7 +45,7 @@ def add_pokemon():
     pokemon_db.append(nuevo_pokemon)
     guardar_pokemon(pokemon_db)
 
-    print(f'{nombre} fue agregado a la Pokedex con éxito.')
+    print(f'{nombre} fue agregado a la Pokedex con éxito. {CHECK}')
 
 
 def list_pokemon():
@@ -71,16 +70,9 @@ def list_pokemon():
             print(f"Descripción: {pokemon_seleccionado.get_info()}")
             
            
-            if isinstance(pokemon_seleccionado, PokemonComun):
-                print(f"Categoría: Común")
-            elif isinstance(pokemon_seleccionado, PokemonRaro):
-                print(f"Categoría: Raro")
-                print(f"Rareza: {pokemon_seleccionado.get_rareza()}")
-            elif isinstance(pokemon_seleccionado, PokemonLegendario):
-                print(f"Categoría: Legendario")
-                print(f"Poder Especial: {pokemon_seleccionado.get_poder_especial()}")
-        else:
-            print("Número fuera de rango.")
+            print("📌 Característica destacada:")
+            print(pokemon_seleccionado.caracteristica_destacada())
+            
     
     except ValueError:
         print("Por favor, ingresa un número válido.")
@@ -90,8 +82,10 @@ def update_pokemon():
     if not pokemon_db:
         print('No hay pokemones para editar.')
         return
+    
+    for index, pokemon in enumerate(pokemon_db, start=1):
+        print(f"{index}. {pokemon.get_nombre()}")
 
-    list_pokemon()
     try:
         index = int(input('Selecciona el numero del Pokemon que quieres editar: ')) - 1
         if index < 0 or index >= len(pokemon_db):
@@ -104,10 +98,10 @@ def update_pokemon():
     pokemon = pokemon_db[index]
     print(f"Editando a {pokemon.get_nombre()}...")
 
-    nuevo_nombre = input(f"Nuevo nombre de [{pokemon.get_nombre()}]: ") or pokemon.get_nombre()
-    nuevo_nivel = input(f"Nuevo nivel de [{pokemon.get_nivel()}]: ") or pokemon.get_nivel()
-    nuevo_tipo = input(f"Nuevo tipo de [{pokemon.get_tipo()}]: ") or pokemon.get_tipo()
-    nueva_info = input(f"Nuevo info de [{pokemon.get_info()}]: ") or pokemon.get_info()
+    nuevo_nombre = input(f"Nuevo nombre  [{pokemon.get_nombre()}]: ") or pokemon.get_nombre()
+    nuevo_nivel = input(f"Nuevo nivel  [{pokemon.get_nivel()}]: ") or pokemon.get_nivel()
+    nuevo_tipo = input(f"Nuevo tipo  [{pokemon.get_tipo()}]: ") or pokemon.get_tipo()
+    nueva_info = input(f"Nuevo info  [{pokemon.get_info()}]: ") or pokemon.get_info()
 
     pokemon.set_nombre(nuevo_nombre)
     pokemon.set_nivel(int(nuevo_nivel))
@@ -125,7 +119,7 @@ def update_pokemon():
 
     guardar_pokemon(pokemon_db)
 
-    print(f'Pokemon actualizado correctamente ✅')
+    print(f'Pokemon actualizado correctamente {CHECK}')
 
 
 
@@ -134,7 +128,9 @@ def delete_pokemon():
         print('No hay pokemones para eliminar')
         return
 
-    list_pokemon()
+    for index, pokemon in enumerate(pokemon_db, start=1):
+        print(f"{index}. {pokemon.get_nombre()}")
+        
     try:
         index = int(input('Selecciona el numero del pokemon que quieras eliminar: ')) - 1
         if index < 0 or index >= len(pokemon_db):

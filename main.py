@@ -1,7 +1,8 @@
 
 from menu import mostrar_menu
-from controllers.pokedex_controllers import add_pokemon, update_pokemon, list_pokemon, delete_pokemon 
+from controllers.pokedex_controllers import add_pokemon, update_pokemon, list_pokemon, delete_pokemon
 from utils.helpers import clear_console
+from data.pokedex import pokemon_db
 
 
 def run():
@@ -24,6 +25,7 @@ def run():
                 break
             case _:
                 print('Opción inválida. Intenta de nuevo.')
-                
+
+
 if __name__ == "__main__":
     run()

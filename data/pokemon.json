@@ -1,8 +1,10 @@
 [
     {
-        "nombre": "Mew",
-        "nivel": 70,
-        "tipo": "Psiquico",
-        "info": "asd"
+        "nombre": "0",
+        "nivel": 1,
+        "tipo": "1",
+        "info": "1",
+        "categoria": "Legendario",
+        "poder_especial": "1"
     }
 ]
