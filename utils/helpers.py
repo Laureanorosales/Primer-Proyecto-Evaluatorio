@@ -1,6 +1,9 @@
 import os
 import json
-from models.pokemon import Pokemon, PokemonRaro, PokemonComun, PokemonLegendario
+from models.pokemon import Pokemon
+from models.pokemon_comun import PokemonComun
+from models.pokemon_legendario import PokemonLegendario
+from models.pokemon_raro import PokemonRaro 
 from utils.constants import FILE_NAME
 
 def clear_console():

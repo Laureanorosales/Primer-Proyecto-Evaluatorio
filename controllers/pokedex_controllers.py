@@ -1,6 +1,9 @@
 from data.pokedex import pokemon_db
 from utils.constants import CHECK, CROSS
-from models.pokemon import Pokemon, PokemonComun, PokemonLegendario, PokemonRaro
+from models.pokemon import Pokemon
+from models.pokemon_comun import PokemonComun
+from models.pokemon_legendario import PokemonLegendario
+from models.pokemon_raro import PokemonRaro 
 from utils.helpers import cargar_pokemon, guardar_pokemon
 
 # Pokemon
